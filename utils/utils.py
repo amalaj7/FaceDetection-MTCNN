@@ -1,3 +1,4 @@
+# Import necessary packages
 import cv2
 from mtcnn.mtcnn import MTCNN
 import numpy as np
@@ -6,6 +7,11 @@ from keras_vggface.vggface import VGGFace
 from scipy.spatial.distance import cosine
 
 def create_bbox(image):
+    '''
+    This function detects the images, draws bounding boxes,
+    and mark circle wherever the keypoints are there 
+    '''
+
     detector = MTCNN()
     faces = detector.detect_faces(image)
     bounding_box = faces[0]['box']
@@ -26,13 +32,16 @@ def create_bbox(image):
     return image
 
 def extractFace(image,resize=(224,224)):
+    '''
+    This function reads the images and resize the face part .
+    '''
     image = cv2.imread(image)
     detector = MTCNN()
     faces = detector.detect_faces(image)
     x1,y1,width,height = faces[0]['box']
     x2,y2 = x1 + width , y1 + height
 
-    face_boundary = image[y1:y2,x1:x2] # contains the facial objects  
+    face_boundary = image[y1:y2,x1:x2] 
     face_image = cv2.resize(face_boundary,resize)
     return face_image
 
@@ -51,6 +60,10 @@ def getEmbedding(faces):
     return model.predict(face)
 
 def getSimilarity(faces):
+    '''
+    Get the Embedding from the faces and return the similarity score ,
+    If it matches it returns a score less than 0.5 , else score above .5 
+    '''
     embeddings = getEmbedding(faces)
 
     score = cosine(embeddings[0],embeddings[1])
@@ -59,7 +72,4 @@ def getSimilarity(faces):
         return "Face Matched", score
     else:
         return "Face Doesnt Match", score
-
-
-
 
