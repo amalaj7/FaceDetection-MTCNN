@@ -16,8 +16,8 @@ for face in faces:
 
 #marked_image = utils.create_bbox(ben_image)
 
-extract_face = utils.extractFace('Ben_affleck/ben1.jpg')
-filename = "Extracted_FaceImage/ben_cropped.jpg"
+extract_face = utils.extractFace('Robert_jr/robert1.webp')
+filename = "Extracted_FaceImage/robert_cropped.jpg"
 cv2.imwrite(filename, extract_face)
 
 # To extract the face and get the embeddings
