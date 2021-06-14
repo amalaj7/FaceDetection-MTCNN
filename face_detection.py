@@ -11,6 +11,15 @@ faces = detector.detect_faces(ben_image)
 for face in faces:
     print(face)
 
-marked_image = utils.create_bbox(ben_image)
-filename = "saved_detections/robert_detection.jpg"
-cv2.imwrite(filename, marked_image)
+# marked_image = utils.create_bbox(ben_image)
+# filename = "saved_detections/robert_detection.jpg"
+# cv2.imwrite(filename, marked_image)
+
+img_list = ['Ben_affleck/ben1.jpg','Ben_affleck/ben2.jpg','Ben_affleck/ben3.jpg']
+
+for i,path_i in enumerate(img_list):
+    face_image = utils.create_bbox(cv2.imread(path_i))
+    #do some operations on image
+    cv2.imwrite('saved_detections/Ben{}.png'.format(i),face_image)
+    continue
+    
