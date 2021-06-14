@@ -17,9 +17,8 @@ for face in faces:
 
 img_list = ['Ben_affleck/ben1.jpg','Ben_affleck/ben2.jpg','Ben_affleck/ben3.jpg']
 
-for i,path_i in enumerate(img_list):
-    face_image = utils.create_bbox(cv2.imread(path_i))
-    #do some operations on image
+for i,img_path in enumerate(img_list):
+    face_image = utils.create_bbox(cv2.imread(img_path))
     cv2.imwrite('saved_detections/Ben{}.png'.format(i),face_image)
     continue
     
