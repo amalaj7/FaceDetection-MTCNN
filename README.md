@@ -7,10 +7,10 @@
 
 For Face Detection run :
 ```bash
-python detection.py
+python face_detection.py
 ```
 
 For Face Identification run:
 ```bash
-python face_verification.py
+python face_identify.py
 ```
