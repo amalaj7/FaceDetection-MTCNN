@@ -71,6 +71,8 @@ def getSimilarity(faces):
 
     '''
     Get the Embedding from the faces and return the similarity score ,
+    That is If the cosine Distance is less , then it means that the similarity between faces is closer .
+    Cosine Distance = 1 - Cosine Similarity
     If it matches it returns a score less than 0.5 , else score above .5 
     '''
 
