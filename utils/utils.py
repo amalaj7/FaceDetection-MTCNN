@@ -7,10 +7,12 @@ from keras_vggface.vggface import VGGFace
 from scipy.spatial.distance import cosine
 
 def create_bbox(image):
+    
     '''
     This function detects the images, draws bounding boxes,
     and mark circle wherever the keypoints are there 
     '''
+    
 
     detector = MTCNN()
     faces = detector.detect_faces(image)
@@ -32,9 +34,11 @@ def create_bbox(image):
     return image
 
 def extractFace(image,resize=(224,224)):
+    
     '''
     This function reads the images and resize the face part .
     '''
+
     image = cv2.imread(image)
     detector = MTCNN()
     faces = detector.detect_faces(image)
@@ -46,6 +50,7 @@ def extractFace(image,resize=(224,224)):
     return face_image
 
 def getEmbedding(faces):
+    
     '''
     This function get the faces and return the embeddings vector
     from the faces using VGGFace which is pretrained model that is being trained on 3.3 millions faces.
@@ -60,10 +65,12 @@ def getEmbedding(faces):
     return model.predict(face)
 
 def getSimilarity(faces):
+
     '''
     Get the Embedding from the faces and return the similarity score ,
     If it matches it returns a score less than 0.5 , else score above .5 
     '''
+
     embeddings = getEmbedding(faces)
 
     score = cosine(embeddings[0],embeddings[1])
