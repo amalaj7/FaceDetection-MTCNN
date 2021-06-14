@@ -1,4 +1,4 @@
-# Import necessary packages
+# Import Necessary Packages
 import cv2
 from mtcnn.mtcnn import MTCNN
 import numpy as np
@@ -12,7 +12,7 @@ def create_bbox(image):
     This function detects the images, draws bounding boxes,
     and mark circle wherever the keypoints are there 
     '''
-    
+
 
     detector = MTCNN()
     faces = detector.detect_faces(image)
@@ -33,6 +33,7 @@ def create_bbox(image):
 
     return image
 
+
 def extractFace(image,resize=(224,224)):
     
     '''
@@ -49,6 +50,7 @@ def extractFace(image,resize=(224,224)):
     face_image = cv2.resize(face_boundary,resize)
     return face_image
 
+
 def getEmbedding(faces):
     
     '''
@@ -63,6 +65,7 @@ def getEmbedding(faces):
     model = VGGFace(model = 'resnet50',include_top=False,input_shape=(224,224,3), pooling='avg')
 
     return model.predict(face)
+
 
 def getSimilarity(faces):
 
